@@ -3,24 +3,24 @@ package br.com.fosales.archcompgoogle
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 
-class ScoreViewModel(
-        val scoreTeamA: MutableLiveData<Int> = MutableLiveData<Int>().apply { value = 0 },
-        val scoreTemaB: MutableLiveData<Int> = MutableLiveData<Int>().apply { value = 0 }) : ViewModel() {
+class ScoreViewModel(val team: MutableLiveData<Team> = MutableLiveData<Team>().apply {
+    value = Team()
+}) : ViewModel() {
 
+    fun updateTeamA() {
+        team.value = Team(incrementa(team.value?.scoreA!!), team.value?.scoreB)
+    }
 
-    fun updateTeamA() = update(scoreTeamA)
-
-    fun updateTeamB() = update(scoreTemaB)
+    fun updateTeamB() {
+        team.value = Team(team.value?.scoreA, incrementa(team.value?.scoreB!!))
+    }
 
     fun reset() {
-        scoreTeamA.value = 0
-        scoreTemaB.value = 0
+        team.value = Team()
     }
 
-    private fun update(score: MutableLiveData<Int>) {
-        val value = score.value ?: 0
-        score.value = value + 1
-    }
-
+    private fun incrementa(valor: Int): Int = valor.plus(1)
 }
+
+data class Team(var scoreA: Int? = 0, var scoreB: Int? = 0)
 
