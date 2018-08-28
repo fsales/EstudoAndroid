@@ -27,10 +27,10 @@ class MainActivity : AppCompatActivity() {
         buttonReset.setOnClickListener {
             viewModel.reset()
         }
-        viewModel.team.observe(this, Observer {
+        viewModel.team.observeForever {
             textTeamA.text = it?.scoreA.toString()
             textTeamB.text = it?.scoreB.toString()
-        })
+        }
 
 //        viewModel.scoreTeamA.observe(this, Observer { value ->
 //            textTeamA.text = value.toString()
