@@ -38,23 +38,42 @@ dependencies {
     implementation "com.google.firebase:firebase-core:$firebase_core"
     implementation "com.google.firebase:firebase-firestore:$firebase_core"
     implementation "com.google.firebase:firebase-auth:$firebase_core"
+    implementation "com.google.firebase:firebase-storage:$firebase_core"
     implementation "com.firebaseui:firebase-ui-auth:3.2.2"
+    implementation "com.firebaseui:firebase-ui-storage:3.2.2"
 
     //anko
     implementation "org.jetbrains.anko:anko:$anko_version"
     implementation "org.jetbrains.anko:anko-design:$anko_version"
     implementation "org.jetbrains.anko:anko-coroutines:$anko_version"
 
+    //glide
+    implementation 'com.github.bumptech.glide:glide:4.6.1'
+    implementation 'com.android.support:support-v4:27.1.1'
+    kapt 'com.github.bumptech.glide:compiler:4.6.1'
+    //groupie
+    implementation 'com.xwray:groupie:2.0.3'
+    implementation 'com.xwray:groupie-kotlin-android-extensions:2.0.3'
+
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+
+
 
     kotlin {
         experimental {
             coroutines "enable"
         }
     }
+
+    androidExtensions {
+        experimental = true
+    }
 }
 
 apply plugin: 'com.google.gms.google-services'
+//kotlin annotation processor
+apply plugin: 'kotlin-kapt'
